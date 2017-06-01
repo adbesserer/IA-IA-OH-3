@@ -1,0 +1,37 @@
+(define (domain catering)
+	(:requirements :strips :typing :adl :equality)
+	(:types  primero segundo dia)
+	(:predicates
+		(primero ?p)
+		(segundo ?p)
+		(NoCompatible ?p1 - primero ?p2 - segundo)
+		(Pescado ?p)
+		(Carne ?p)
+		(Used ?p)
+		(menu ?dia - dia ?pp - primero ?sp - segundo)
+		(hayMenu ?dia)
+	)
+	(:action crear_menu
+		:parameters (?dia - dia ?pp - primero ?sp - segundo)
+		:precondition (and
+						(primero ?pp)
+						(segundo ?sp)
+						(not (NoCompatible ?pp ?sp))
+						(not (Used ?pp))
+						(not (Used ?sp))
+						(not (hayMenu ?dia))
+					  )
+		:effect (and
+				(menu ?dia ?pp ?sp)
+				(Used ?pp)
+				(Used ?sp)
+				(hayMenu ?dia)
+				)
+	)
+
+	;(:functions
+	;	(funcion1 ?p - primero)
+	;	(funcion2 ?p - segundo)
+	;	(coste-total)
+	;)
+)
