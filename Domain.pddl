@@ -1,0 +1,21 @@
+(define (domain catering)
+	(:requirements :strips :typing :adl :equality)
+	(:types  primero segundo)
+	(:predicates
+		(primero ?p)
+		(segundo ?p)
+		(NoCompatible ?p1 ?p2)
+		(Pescado ?p)
+		(Carne ?p)
+		(Frio ?p)
+		(Caliente ?p)
+		(menu ?dia ?pp ?ss)
+	)
+	(:action crear_menu
+		:parameters (?dia ?pp ?ss)
+		:precondition (and
+						(pred1 ?V1)
+						(exists (?V3 - tipo2) (pred2 ?V3)))
+		:effect (menu ?dia ?pp ?ss)
+	)
+)
