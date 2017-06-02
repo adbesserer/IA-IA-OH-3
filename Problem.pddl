@@ -43,6 +43,7 @@
 		(tipoS Lomo_Horno Carne)
 		
 		(tipoP Ensalada Verdura)
+		(tipoP Ensaladilla_Rusa Verdura)
 		(tipoP Gazpacho Verdura)
 		
 		(tipoP Tortilla_de_Patatas Otro)
@@ -51,6 +52,13 @@
 		
 
 		(mustUse Jueves Paella)
+		(RestrictedSegundo Jueves)
+
+		(mustUse Lunes Ensaladilla_Rusa)
+		(RestrictedPrimero Lunes)
+
+		(mustUse Jueves Sopa_de_Pescado)
+		(RestrictedPrimero Jueves)
 
 		(diaAnterior Lunes Martes)
 		(diaAnterior Martes Miercoles)

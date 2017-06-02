@@ -20,7 +20,9 @@
 		(tipoPrimeroDia ?t - tipo ?p - primero ?d - dia)
 		(tipoSegundoDia ?t - tipo ?p - segundo ?d - dia)
 
-		(primeroServido ?dia)
+		(primeroServido ?dia - dia)
+		(RestrictedPrimero ?dia - dia)
+		(RestrictedSegundo ?dia - dia)
 	)
 	
 	(:action servir_lunes 
@@ -34,6 +36,14 @@
 						(not (hayMenu ?d))
 						(tipoP ?pp ?tp)
 						(tipoS ?sp ?ts)
+						(or   							;; Esta or sirve para fijar un plato en un dia
+							(not (RestrictedPrimero ?d))
+							(mustUse ?d ?pp)
+						)
+						(or   							;; Esta or sirve para fijar un plato en un dia
+							(not (RestrictedSegundo ?d))
+							(mustUse ?d ?sp)
+						)
 					)
 		:effect (and
 				(hayMenu ?d)
@@ -50,20 +60,20 @@
 		:parameters (?dAnt - dia ?ppAnt - primero ?tAnt - tipo ?d - dia ?pp - primero ?t - tipo) ; menu dia anterior y de hoy
 		:precondition (and
 						(not (firstDay ?d))
+						(not (hayMenu ?d))
 						(diaAnterior ?dAnt ?d)
 						(not (Used ?pp))
-						(not (hayMenu ?d))
 						(not (primeroServido ?d))
 						(PDiaUsado ?ppAnt ?dAnt)
 						(tipoP ?pp ?t)
 						(tipop ?ppAnt ?tAnt)
-						(not (= ?t ?tAnt))
-						(not (exists (?x - dia)
-								(and
-									(not(= ?x ?d))
-									(mustUse ?x ?pp)
-								)
-							)
+						(or 
+							(= Otro ?t)		;los platos de tipo 'Otro' pueden repetirse 
+							(not (= ?t ?tAnt))
+						)
+						(or   							;; Esta or sirve para fijar un plato en un dia
+							(not (RestrictedPrimero ?d))
+							(mustUse ?d ?pp)
 						)
 					  )
 		:effect (and
@@ -85,13 +95,13 @@
 						(not (NoCompatible ?pp ?sp))
 						(tipoS ?sp ?t)
 						(tipoS ?spAnt ?tAnt)
-						(not (= ?t ?tAnt))
-						(not (exists (?x - dia)
-								(and
-									(not(= ?x ?d))
-									(mustUse ?x ?sp)
-								)
-							)
+						(or 
+							(= Otro ?t)		;los platos de tipo 'Otro' pueden repetirse 
+							(not (= ?t ?tAnt))
+						)
+						(or
+							(not (RestrictedSegundo ?d))
+							(mustUse ?d ?sp)
 						)
 					  )
 		:effect (and
