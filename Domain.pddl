@@ -53,6 +53,8 @@
 						(not (Used ?pp))
 						(not (hayMenu ?d))
 						(not (primeroServido ?d))
+						(tipoP ?pp ?t)
+						(tipop ?ppAnt ?tAnt)
 						(not (= ?t ?tAnt))
 						(not (exists (?x - dia)
 								(and
