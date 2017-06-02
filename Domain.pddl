@@ -1,5 +1,5 @@
 (define (domain catering)
-	(:requirements :strips :typing :adl :equality)
+	(:requirements :strips :typing :adl :equality :fluents)
 	(:types  primero segundo dia tipo)
 	(:predicates
 		(primero ?p)
@@ -28,6 +28,10 @@
 	(:action servir_lunes 
 		:parameters (?d - dia ?pp - primero ?sp - segundo ?tp - tipo ?ts - tipo)
 		:precondition (and
+						(and
+							(<= (+ (PCals ?pp)(Scals ?sp)) 1500)
+							(>= (+ (PCals ?pp)(Scals ?sp)) 1000)
+						)
 						(firstDay ?d)
 						(not (Used ?sp))
 						(not (Used ?pp))
@@ -85,6 +89,10 @@
 	(:action servir_segundo
 		:parameters (?dAnt - dia ?spAnt - segundo ?tAnt - tipo ?d - dia  ?pp - primero ?sp - segundo ?t - tipo ) ; menu dia anterior y de hoy
 		:precondition (and
+						(and
+							(<= (+ (PCals ?pp)(Scals ?sp)) 1500)
+							(>= (+ (PCals ?pp)(Scals ?sp)) 1000)
+						)
 						(not (firstDay ?d))
 						(diaAnterior ?dAnt ?d)
 						(primeroServido ?d)
@@ -110,55 +118,11 @@
 				(SDiaUsado ?sp ?d)
 				)
 	)
-;	(:action crear_menu
-;		:parameters (?dAnt - dia ?spAnt - primero ?spAnt - segundo ?d - dia ?pp - primero ?sp - segundo) ; menu dia anterior y de hoy
-;		:precondition (and
-;						(primero ?pp)
-;						(segundo ?sp)
-;						(not (NoCompatible ?pp ?sp))
-;						(not (Used ?pp))
-;						(not (Used ?sp))
-;						(not (hayMenu ?d))
-;						(not (and 
-;								(diaAnterior ?dAnt ?d)
-;								(or
-;									(and
-;									(PDiaUsado ?ppAnt ?dAnt)	
-;									(tipoP ?pp Pescado)
-;									(tipoP ?ppAnt Pescado)
-;									)
-;									(and
-;									(SDiaUsado ?spAnt ?dAnt)	
-;									(tipoS ?sp Carne)
-;									(tipoS ?spAnt Carne)
-;							 		)
-;								)
-;							)
-;						)
-;						(not (exists (?x - dia)
-;								(and
-;									(not(= ?x ?d))
-;									(or
-;										(mustUse ?x ?pp)
-;										(mustUse ?x ?sp)
-;									)
-;								)
-;							)
-;						)
-;					  )
-;		:effect (and
-;				(menu ?d ?pp ?sp)
-;				(Used ?pp)
-;				(Used ?sp)
-;				(hayMenu ?d)
-;				(PDiaUsado ?pp ?d)
-;				(SDiaUsado ?sp ?d)
-;				)
-;	)
 
-	;(:functions
-	;	(funcion1 ?p - primero)
-	;	(funcion2 ?p - segundo)
-	;	(coste-total)
-	;)
+	(:functions
+		(Pcals ?p - primero)
+		(Scals ?p - segundo)
+		;(coste-total)
+	)
+
 )

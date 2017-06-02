@@ -57,9 +57,6 @@
 		(mustUse Lunes Ensaladilla_Rusa)
 		(RestrictedPrimero Lunes)
 
-		(mustUse Jueves Sopa_de_Pescado)
-		(RestrictedPrimero Jueves)
-
 		(diaAnterior Lunes Martes)
 		(diaAnterior Martes Miercoles)
 		(diaAnterior Miercoles Jueves)
@@ -67,8 +64,27 @@
 		
 		(firstDay Lunes)
 
+		(= (Pcals Sopa_de_Pescado) 		400)
+		(= (Pcals Ensalada) 			300)
+		(= (Pcals Tortilla_de_Patatas) 	600)
+		(= (Pcals Gazpacho) 			550)
+		(= (Pcals Ensaladilla_Rusa) 	700)
+		(= (Pcals Spaghetti_Pesto) 		650)
+		(= (Pcals Lentejas) 			750)
+		
+		(= (Scals Bacalao_con_Samfaina) 	800)
+		(= (Scals Solomillo_con_Patatas) 	900)
+		(= (Scals Pollo_Brasa) 				700)
+		(= (Scals Hamburguesa_Vegetariana) 	600)
+		(= (Scals Callos) 					1100)
+		(= (Scals Calamares_Rellenos) 		850)
+		(= (Scals Lomo_Horno) 				750)
+		(= (Scals Paella) 					950)
+		(= (Scals Pizza_Atun) 				900)			
+
 	)
-	
+	;(:metric minimize (coste-total))
+
 	(:goal (forall (?d - dia) (hayMenu ?d))
 	)
 )
