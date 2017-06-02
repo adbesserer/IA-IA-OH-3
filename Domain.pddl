@@ -57,6 +57,8 @@
 				(SDiaUsado ?sp ?d)
 				(tipoPrimeroDia ?tp ?pp ?d)
 				(tipoSegundoDia ?ts ?sp ?d)
+				(increase (coste-total) (Pprice ?pp))
+				(increase (coste-total) (Sprice ?sp))
 			)
 	)
 
@@ -84,6 +86,7 @@
 				(primeroServido ?d)
 				(Used ?pp)
 				(PDiaUsado ?pp ?d)
+				(increase (coste-total) (Pprice ?pp))
 				)
 	)
 	(:action servir_segundo
@@ -116,13 +119,18 @@
 				(Used ?sp)
 				(hayMenu ?d)
 				(SDiaUsado ?sp ?d)
+				(increase (coste-total) (Sprice ?sp))
 				)
 	)
 
 	(:functions
-		(Pcals ?p - primero)
-		(Scals ?p - segundo)
-		;(coste-total)
+		(Pcals ?p - primero) ;calorias de un primero
+		(Scals ?p - segundo) ;calorias de un segundo
+
+		(Pprice ?p - primero) ;precio de un primero
+		(Sprice ?p - segundo) ;precio de un segundo
+
+		(coste-total)		;coste total de toda la semana
 	)
 
 )
