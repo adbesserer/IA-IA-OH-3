@@ -5,6 +5,7 @@
 		(primero ?p)
 		(segundo ?p)
 		(NoCompatible ?p1 - primero ?p2 - segundo)
+		(firstDay ?d - dia)
 		
 		(hayMenu ?dia - dia)
 		(mustUse ?dia - dia ?p)
@@ -25,7 +26,7 @@
 	(:action servir_lunes 
 		:parameters (?d - dia ?pp - primero ?sp - segundo ?tp - tipo ?ts - tipo)
 		:precondition (and
-						(= Lunes ?d)
+						(firstDay ?d)
 						(not (Used ?sp))
 						(not (Used ?pp))
 						(not (primeroServido ?d))
@@ -48,7 +49,7 @@
 	(:action servir_primero
 		:parameters (?dAnt - dia ?ppAnt - primero ?tAnt - tipo ?d - dia ?pp - primero ?t - tipo) ; menu dia anterior y de hoy
 		:precondition (and
-						(not (= Lunes ?d))
+						(not (firstDay ?d))
 						(diaAnterior ?dAnt ?d)
 						(not (Used ?pp))
 						(not (hayMenu ?d))
@@ -74,11 +75,11 @@
 	(:action servir_segundo
 		:parameters (?dAnt - dia ?spAnt - segundo ?tAnt - tipo ?d - dia  ?pp - primero ?sp - segundo ?t - tipo ) ; menu dia anterior y de hoy
 		:precondition (and
-						(not (= Lunes ?d))
+						(not (firstDay ?d))
 						(diaAnterior ?dAnt ?d)
 						(primeroServido ?d)
 						(PDiaUsado ?pp ?d)
-						(PDiaUsado ?spAnt ?dAnt)
+						(SDiaUsado ?spAnt ?dAnt)
 						(not (Used ?sp))
 						(not (hayMenu ?d))
 						(not (NoCompatible ?pp ?sp))

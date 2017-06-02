@@ -1,16 +1,16 @@
 (define (problem menus)
 	(:domain catering)
 	(:objects Sopa_de_Pescado Ensalada Tortilla_de_Patatas Gazpacho Ensaladilla_Rusa Spaghetti_Pesto Lentejas - primero
-			Bacalao_con_Samfaina Solomillo_con_Patatas Pollo_Brasa Hamburguesa_Vegetariana Callos Calamares_Rellenos Lomo_Horno Paella Pizza_4Quesos - segundo
+			Bacalao_con_Samfaina Solomillo_con_Patatas Pollo_Brasa Hamburguesa_Vegetariana Callos Calamares_Rellenos Lomo_Horno Paella Pizza_Atun - segundo
 			Lunes Martes Miercoles Jueves Viernes - dia
-			Pescado Carne - tipo
+			Pescado Carne Verdura Pasta Otro - tipo
 )
 	(:init
 		(primero Sopa_de_Pescado)(primero Ensalada)(primero Tortilla_de_Patatas)(primero Gazpacho)
 		(primero Ensaladilla_Rusa)(primero Spaghetti_Pesto)(primero Lentejas)
 
 		(Segundo Bacalao_con_Samfaina)(Segundo Solomillo_con_Patatas)(Segundo Pollo_Brasa)(Segundo Hamburguesa_Vegetariana)
-		(Segundo Callos)(Segundo Calamares_Rellenos)(Segundo Lomo_Horno)(Segundo Paella)(Segundo Pizza_4Quesos)
+		(Segundo Callos)(Segundo Calamares_Rellenos)(Segundo Lomo_Horno)(Segundo Paella)(Segundo Pizza_Atun)
 
 		(NoCompatible Sopa_de_Pescado Callos)
 		(NoCompatible Sopa_de_Pescado Hamburguesa_Vegetariana)
@@ -34,12 +34,21 @@
 		(tipoS Paella Pescado)
 		(tipoS Bacalao_con_Samfaina Pescado)
 		(tipoS Calamares_Rellenos Pescado)
+		(tipoS Pizza_Atun Pescado)
 
 		(tipoS Solomillo_con_Patatas Carne)
 		(tipoP Lentejas Carne)
 		(tipoS Pollo_Brasa Carne)
 		(tipoS Callos Carne)
 		(tipoS Lomo_Horno Carne)
+		
+		(tipoP Ensalada Verdura)
+		(tipoP Gazpacho Verdura)
+		
+		(tipoP Tortilla_de_Patatas Otro)
+		
+		(tipoP Spaghetti_Pesto Pasta)
+		
 
 		(mustUse Jueves Paella)
 
@@ -47,6 +56,8 @@
 		(diaAnterior Martes Miercoles)
 		(diaAnterior Miercoles Jueves)
 		(diaAnterior Jueves Viernes)
+		
+		(firstDay Lunes)
 
 	)
 	
