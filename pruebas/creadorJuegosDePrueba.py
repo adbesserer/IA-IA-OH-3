@@ -58,12 +58,14 @@ def esPrimero(p, l):
 			return True
 	return False
 
-def creatingTests(nFiles, platosPescado, platosCarne, platosArroz, platosPasta):
+	Otro
+
+def creatingTests(nFiles, platosPescado, platosCarne, platosOtro, platosPasta):
 	total = 1
 	while total-1 != nFiles:
 
-		platosPrimero	= takeFst(platosPescado+platosCarne+platosArroz+platosPasta)
-		platosSegundo	= takeSnd(platosPescado+platosCarne+platosArroz+platosPasta)
+		platosPrimero	= takeFst(platosPescado+platosCarne+platosOtro+platosPasta)
+		platosSegundo	= takeSnd(platosPescado+platosCarne+platosOtro+platosPasta)
 
 		platosIncompatibles	= incompatibles(platosPrimero, platosSegundo)
 
@@ -83,14 +85,14 @@ def creatingTests(nFiles, platosPescado, platosCarne, platosArroz, platosPasta):
 			file.write(sp+' ')
 		file.write('- segundo\n')
 		file.write('            Lunes Martes Miercoles Jueves Viernes - dia\n')
-		file.write('            Pescado Carne Arroz Pasta - tipo\n)\n')
+		file.write('            Pescado Carne Otro Pasta - tipo\n)\n')
 
 		file.write('    (:init\n        ')
 		for pp in platosPrimero:
 			file.write('(primero '+pp+')')
 		file.write('\n\n        ')
 		for sp in platosSegundo:
-			file.write('(Segundo '+sp+')')
+			file.write('(segundo '+sp+')')
 		file.write('\n\n')
 		for ip in platosIncompatibles:
 			file.write('            (NoCompatible '+ip[0]+' '+ip[1]+')\n')
@@ -107,25 +109,25 @@ def creatingTests(nFiles, platosPescado, platosCarne, platosArroz, platosPasta):
 		### C A R N E ###
 		for carn in platosCarne:
 			if esPrimero(carn, platosPrimero):
-				file.write('            (tipoP '+carn+' Pescado)\n')
+				file.write('            (tipoP '+carn+' Carne)\n')
 			else:
-				file.write('            (tipoS '+carn+' Pescado)\n')
+				file.write('            (tipoS '+carn+' Carne)\n')
 		file.write('\n')
 		
 		### A R R O Z ###
-		for arr in platosArroz:
+		for arr in platosOtro:
 			if esPrimero(arr, platosPrimero):
-				file.write('            (tipoP '+arr+' Pescado)\n')
+				file.write('            (tipoP '+arr+' Otro)\n')
 			else:
-				file.write('            (tipoS '+arr+' Pescado)\n')
+				file.write('            (tipoS '+arr+' Otro)\n')
 		file.write('\n')
 		
 		### P A S T A ###
 		for past in platosPasta:
 			if esPrimero(past, platosPrimero):
-				file.write('            (tipoP '+past+' Pescado)\n')
+				file.write('            (tipoP '+past+' Pasta)\n')
 			else:
-				file.write('            (tipoS '+past+' Pescado)\n')
+				file.write('            (tipoS '+past+' Pasta)\n')
 		file.write('\n')
 		
 		### M U S T   U S E   P R I M E R O ###
@@ -174,12 +176,18 @@ def creatingTests(nFiles, platosPescado, platosCarne, platosArroz, platosPasta):
 		total += 1
 
 
-platosPescado	= ['Atún_al_horno', 'Bacalao_en_salsa_verde', 'Lubina_al_limon', 'Bacalao_con_tomate', 'Calamares_a_la_romana', 'Rabas_y_chocos', 'Cazón', 'Boquerones_al_vinagre', 'Anchoas', 'Pulpo_a_la_feira', 'Pez_espada_y_cosas_pijas', 'Langosta_a_la_salsa']
+##########################################################################
+##																		##
+##							S C R I P T I N G 							##
+##																		##
+##########################################################################
+ 
+platosPescado	= ['Atun_al_horno', 'Bacalao_en_salsa_verde', 'Lubina_al_limon', 'Bacalao_con_tomate', 'Calamares_a_la_romana', 'Rabas_y_chocos', 'Cazon', 'Boquerones_al_vinagre', 'Anchoas', 'Pulpo_a_la_feira', 'Pez_espada_y_cosas_pijas', 'Langosta_a_la_salsa']
 platosCarne 	= ['Conejo_asado', 'Solomillo_de_cerdo', 'Pato_a_la_naranja', 'Pollo_a_la_brasa', 'Rabo_de_toro', 'Botifarra_del_pages', 'Entrecot_al_roquefort', 'Costillitas_de_cordero', 'Galtas_de_cerdo', 'Callos', 'Hamburguesa_de_pollo', 'Pechuga_de_pollo']
-platosArroz 	= ['Arroz_a_la_cubana', 'Ensalada_de_arroz', 'Cuscús', 'Paella', 'Arroz_con_curry', 'Arroz_con_setas', 'Arroz_tres_delicias', 'Arroz_frito_con_salsa_de_cebolla', 'Arroz_salteado_con_verduras', 'Arroz_con_bogavantes', 'Arroz', 'Risotto_con_gambas']
-platosPasta 	= ['Macarrones_a_la_bolognesa', 'Macarrones_a_la_carbonara', 'Spaghetti_a_la_bolognesa', 'Spaghetti_al_pesto', 'Spaghetti_a_la_carbonara', 'Ramen', 'Sopa_de_fideos', 'Fideos_con_verduras', 'Fetuccini_a_la_putanesca', 'Ravioli_a_la_genovesa', 'Lasaña', 'Tallarines_con_verduras']
+platosOtro 		= ['Arroz_a_la_cubana', 'Ensalada_de_arroz', 'Cuscus', 'Paella', 'Arroz_con_curry', 'Arroz_con_setas', 'Arroz_tres_delicias', 'Arroz_frito_con_salsa_de_cebolla', 'Arroz_salteado_con_verduras', 'Arroz_con_bogavantes', 'Arroz_blanco', 'Risotto_con_gambas']
+platosPasta 	= ['Macarrones_a_la_bolognesa', 'Macarrones_a_la_carbonara', 'Spaghetti_a_la_bolognesa', 'Spaghetti_al_pesto', 'Spaghetti_a_la_carbonara', 'Ramen', 'Sopa_de_fideos', 'Fideos_con_verduras', 'Fetuccini_a_la_putanesca', 'Ravioli_a_la_genovesa', 'Lasanya', 'Tallarines_con_verduras']
 
 
 nFiles = 10
 
-creatingTests(nFiles, platosPescado, platosCarne, platosArroz, platosPasta)
+creatingTests(nFiles, platosPescado, platosCarne, platosOtro, platosPasta)
