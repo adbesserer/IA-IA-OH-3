@@ -9,8 +9,8 @@
 		(primero Sopa_de_Pescado)(primero Ensalada)(primero Tortilla_de_Patatas)(primero Gazpacho)
 		(primero Ensaladilla_Rusa)(primero Spaghetti_Pesto)(primero Lentejas)
 
-		(Segundo Bacalao_con_Samfaina)(Segundo Solomillo_con_Patatas)(Segundo Pollo_Brasa)(Segundo Hamburguesa_Vegetariana)
-		(Segundo Callos)(Segundo Calamares_Rellenos)(Segundo Lomo_Horno)(Segundo Paella)(Segundo Pizza_Atun)
+		(segundo Bacalao_con_Samfaina)(segundo Solomillo_con_Patatas)(segundo Pollo_Brasa)(segundo Hamburguesa_Vegetariana)
+		(segundo Callos)(segundo Calamares_Rellenos)(segundo Lomo_Horno)(segundo Paella)(segundo Pizza_Atun)
 
 		(NoCompatible Sopa_de_Pescado Callos)
 		(NoCompatible Sopa_de_Pescado Hamburguesa_Vegetariana)

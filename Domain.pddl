@@ -29,6 +29,8 @@
 	(:action servir_lunes 
 		:parameters (?d - dia ?pp - primero ?sp - segundo ?tp - tipo ?ts - tipo)
 		:precondition (and
+						(primero ?pp)
+						(segundo ?sp)
 						(and
 							(<= (+ (PCals ?pp)(Scals ?sp)) 1500)
 							(>= (+ (PCals ?pp)(Scals ?sp)) 1000)
@@ -66,6 +68,7 @@
 	(:action servir_primero
 		:parameters (?dAnt - dia ?ppAnt - primero ?tAnt - tipo ?d - dia ?pp - primero ?t - tipo) ; menu dia anterior y de hoy
 		:precondition (and
+						(primero ?pp)
 						(not (firstDay ?d))
 						(not (hayMenu ?d))
 						(diaAnterior ?dAnt ?d)
@@ -93,6 +96,8 @@
 	(:action servir_segundo
 		:parameters (?dAnt - dia ?spAnt - segundo ?tAnt - tipo ?d - dia  ?pp - primero ?sp - segundo ?t - tipo ) ; menu dia anterior y de hoy
 		:precondition (and
+						(primero ?pp)
+						(segundo ?sp)
 						(and
 							(<= (+ (PCals ?pp)(Scals ?sp)) 1500)
 							(>= (+ (PCals ?pp)(Scals ?sp)) 1000)
